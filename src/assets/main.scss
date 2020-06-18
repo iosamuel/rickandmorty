@@ -1,0 +1,17 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+body {
+  @apply bg-gray-500 m-4 text-gray-300;
+}
+
+#app {
+  @apply mx-auto p-8 bg-gray-800;
+
+  h1 {
+    @apply text-center text-3xl mb-4;
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "rickandmorty",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "tailwindcss": "^1.4.6",
+    "vue": "^3.0.0-beta.14"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.0-beta.14",
+    "sass": "^1.26.8",
+    "vite": "^0.20.0",
+    "vue-router": "^4.0.0-alpha.12"
+  }
+}

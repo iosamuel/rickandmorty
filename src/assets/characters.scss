@@ -1,0 +1,41 @@
+.search-bar {
+  @apply mb-4 mx-auto block w-64 border-none outline-none p-2 text-xl text-black;
+}
+
+.cards {
+  @apply grid gap-4;
+
+  @media screen and (min-width: 768px) {
+    @apply grid-flow-col grid-cols-2 grid-flow-row-dense;
+  }
+
+  &__card {
+    @apply p-8 bg-gray-900;
+
+    img {
+      @apply mb-4 mx-auto;
+    }
+
+    .card__content {
+      h3 {
+        @apply text-xl font-bold;
+      }
+    }
+  }
+}
+
+nav {
+  @apply sticky bottom-0 left-0 right-0 p-4 bg-gray-600 flex justify-between items-center;
+
+  a {
+    @apply bg-gray-800 inline-block p-2 rounded-md w-16 text-center;
+
+    &.disable {
+      @apply pointer-events-none bg-gray-700 text-gray-500;
+    }
+  }
+
+  span {
+    @apply text-lg font-bold;
+  }
+}
