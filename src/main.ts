@@ -1,17 +1,17 @@
 import { createApp } from "vue";
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import App from "./App.vue";
 import Characters from "./components/Characters.vue";
 import "./assets/main.scss";
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [
     {
       path: "/:page?",
-      component: Characters,
-    },
-  ],
+      component: Characters
+    }
+  ]
 });
 
 const app = createApp(App);

@@ -1,5 +1,10 @@
 <template>
-  <input class="search-bar" type="text" v-model="filterCharacters" />
+  <input
+    class="search-bar"
+    type="text"
+    placeholder="Search by Name"
+    v-model="filterCharacters"
+  />
 
   <div class="cards">
     <div class="cards__card" v-for="character in characters">
