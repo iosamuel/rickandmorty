@@ -7,7 +7,11 @@
   />
 
   <div class="cards">
-    <div class="cards__card" v-for="character in characters">
+    <div
+      class="cards__card"
+      v-for="character in characters"
+      :key="character.id"
+    >
       <img :src="character.image" :alt="character.name" />
       <div class="card__content">
         <h3>{{ character.name }}</h3>
@@ -44,7 +48,7 @@
 
 <script lang="ts">
 import { useCharacters } from "../composable/useCharacters";
-import { computed, unref, ref } from "vue";
+import { computed, unref } from "vue";
 
 export default {
   name: "Characters",
@@ -53,16 +57,16 @@ export default {
 
     const currentPage = computed(() => {
       const { next, prev } = unref(info);
-      return next ? next - 1 : prev + 1;
+      return next ? next - 1 : prev ?? 0 + 1;
     });
 
     return {
       characters,
       info,
       currentPage,
-      filterCharacters
+      filterCharacters,
     };
-  }
+  },
 };
 </script>
 

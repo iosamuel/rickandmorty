@@ -17,27 +17,31 @@ export function useCharacters() {
     characters: [],
   });
   const variables = reactive({
-    page: null,
+    page: 0,
     filter: {
       name: "",
     },
   });
 
   const startCurrentRouteWatcher = (immediate = true) => {
-    return watch(currentRoute, (route, oldRoute) => {
-      if (route !== oldRoute) {
-        variables.page = parseInt(route.params.page as string);
+    return watch(
+      currentRoute,
+      (route, oldRoute) => {
+        if (route !== oldRoute) {
+          variables.page = parseInt(route.params.page as string);
+        }
+      },
+      {
+        immediate,
       }
-    }, {
-      immediate,
-    });
+    );
   };
   let stopCurrentRouteWatcher = startCurrentRouteWatcher();
 
   watch(filterCharacters, (val, oldVal) => {
     if (val !== oldVal) {
       stopCurrentRouteWatcher();
-      variables.page = null;
+      variables.page = 0;
       variables.filter.name = val;
       push("/").then(() => {
         stopCurrentRouteWatcher = startCurrentRouteWatcher(false);
@@ -46,9 +50,11 @@ export function useCharacters() {
   });
 
   watchEffect(async () => {
-    const response = await fetchGQL(queryCharacters, variables) as any;
-    state.characters = response.data.characters.results as ICharacter[];
-    state.info = response.data.characters.info as RInfo;
+    const response = (await fetchGQL(queryCharacters, variables)) as any;
+    if (response.data.characters) {
+      state.characters = response.data.characters.results as ICharacter[];
+      state.info = response.data.characters.info as RInfo;
+    }
   });
 
   return {
